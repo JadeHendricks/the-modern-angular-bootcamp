@@ -41,5 +41,16 @@
       <div>{{ height | number: "1.1-3" }}</div>
     </div>
   </div>
+  <div class="row">
+    <div class="form-group col">
+      <label>Miles</label>
+      <input class="form-control" type="text" (input)="onMilesChange($event.target.value)"/>
+    </div>
+    <div class="col">
+      <label><strong>Kilometers</strong></label>
+      <!--Possible to use pipes in if checks and add more pipes-->
+      <div *ngIf="(miles | convert: 'km') > 10">{{ miles | convert: "km" | number: "1.2-2" }}</div>
+    </div>
+  </div>
   {{ car | json }}
 </div>
