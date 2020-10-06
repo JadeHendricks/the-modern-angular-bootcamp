@@ -15,7 +15,7 @@ export class ClassDirective {
     @Input('appClass') set classNames(classObj: any) {
     for (const key in classObj) {
       if (classObj[key] === true) {
-        this.element.nativeElement.classList.add(key)
+        this.element.nativeElement.classList.add(key);
       } else {
         this.element.nativeElement.classList.remove(key);
       }
