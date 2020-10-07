@@ -7,6 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollectionsHomeComponent implements OnInit {
 
+  data = [
+    { name: 'James', age: 24, job: 'Designer', privateProperty: 'asdsa42aA'},
+    { name: 'Jill', age: 26, job: 'Engineer' },
+    { name: 'Elyse', age: 25, job: 'Engineer', privateProperty: '21a5s21d3' },
+  ];
+
+  headers = [
+    { key: 'privateProperty', label: 'Private Property' },
+    { key: 'name', label: 'Name' },
+    { key: 'age', label: 'Age' },
+    { key: 'job', label: 'Job' }
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
