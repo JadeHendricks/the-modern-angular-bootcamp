@@ -2,3 +2,13 @@
     Table Component
 </app-divider>
 <app-table [data]="data" [headers]="headers" classNames="striped celled"></app-table>
+
+<app-divider>
+    Tab Component
+</app-divider>
+<app-tabs>
+    <a routerLink="/collections" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="item">Biography</a>
+    <a routerLink="/collections/companies" routerLinkActive="active" class="item">Companies</a>
+    <a routerLink="/collections/partners" routerLinkActive="active" class="item">Partners</a>
+</app-tabs>
+
