@@ -1,0 +1,12 @@
+/* Hide the div if actions was not passed a value from the user */
+.actions:empty {
+    display: none;
+}
+
+.actions-default {
+    display: none;
+}
+
+.actions:empty + .actions-default {
+    display: block;
+}
