@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    EquationComponent
+    EquationComponent,
   ],
   imports: [
     BrowserModule,
