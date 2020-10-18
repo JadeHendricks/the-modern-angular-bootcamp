@@ -22,7 +22,7 @@ interface SignupResponse {
 })
 export class AuthService {
 
-  rootUrl: string = 'https://api.angular-email.com/auth';
+  rootUrl = 'https://api.angular-email.com/auth';
   signedin$ = new BehaviorSubject(false);
 
   constructor(private http: HttpClient) { }
@@ -40,5 +40,12 @@ export class AuthService {
           this.signedin$.next(true);
         })
       ));
+  }
+
+  checkAuth(): Observable<any> {
+    return this.http.get(`${this.rootUrl}/signedin`)
+      .pipe(
+        tap(response => console.log(response))
+      );
   }
 }
