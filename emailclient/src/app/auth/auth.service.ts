@@ -12,6 +12,10 @@ interface SignupCredentials {
   password: string;
   passwordConfirmation: string;
 }
+interface SigninCredentials {
+  username: string;
+  password: string;
+}
 
 interface SignupResponse {
   username: string;
@@ -47,11 +51,29 @@ export class AuthService {
       ));
   }
 
+  signin(credentials: SigninCredentials): Observable<SigninCredentials> {
+    return this.http.post<SigninCredentials>(`${this.rootUrl}/signin`, credentials)
+      .pipe(
+        tap(() => {
+          this.signedin$.next(true);
+        })
+      );
+  }
+
   checkAuth(): Observable<SignedInResponse> {
     return this.http.get<SignedInResponse>(`${this.rootUrl}/signedin`)
       .pipe(
         tap(({authenticated}) => {
           this.signedin$.next(authenticated);
+        })
+      );
+  }
+
+  signout(): Observable<any> {
+    return this.http.post(`${this.rootUrl}/signout`, {})
+      .pipe(
+        tap(() => {
+          this.signedin$.next(false);
         })
       );
   }
