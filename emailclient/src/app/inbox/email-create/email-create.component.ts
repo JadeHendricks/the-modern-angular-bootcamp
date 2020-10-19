@@ -14,7 +14,7 @@ export class EmailCreateComponent implements OnInit {
     subject: '',
     html: '',
     text: '',
-    from: '',
+    from: 'jimmy@angular-email.com',
   };
 
   constructor() { }
