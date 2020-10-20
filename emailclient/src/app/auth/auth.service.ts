@@ -26,6 +26,10 @@ interface SignedInResponse {
   username: string;
 }
 
+interface SigninResponse {
+  username: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,6 +37,7 @@ export class AuthService {
 
   rootUrl = 'https://api.angular-email.com/auth';
   signedin$ = new BehaviorSubject(null);
+  username = '';
 
   constructor(private http: HttpClient) { }
 
@@ -45,17 +50,19 @@ export class AuthService {
   signup(credentials: SignupCredentials): Observable<SignupResponse> {
     return this.http.post<SignupResponse>(`${this.rootUrl}/signup`, credentials)
       .pipe((
-        tap(() => {
+        tap(({ username }) => {
           this.signedin$.next(true);
+          this.username = username;
         })
       ));
   }
 
-  signin(credentials: SigninCredentials): Observable<SigninCredentials> {
-    return this.http.post<SigninCredentials>(`${this.rootUrl}/signin`, credentials)
+  signin(credentials: SigninCredentials): Observable<SigninResponse> {
+    return this.http.post<SigninResponse>(`${this.rootUrl}/signin`, credentials)
       .pipe(
-        tap(() => {
+        tap(({ username }) => {
           this.signedin$.next(true);
+          this.username = username;
         })
       );
   }
@@ -63,8 +70,9 @@ export class AuthService {
   checkAuth(): Observable<SignedInResponse> {
     return this.http.get<SignedInResponse>(`${this.rootUrl}/signedin`)
       .pipe(
-        tap(({authenticated}) => {
+        tap(({authenticated, username}) => {
           this.signedin$.next(authenticated);
+          this.username = username;
         })
       );
   }
